@@ -27,7 +27,7 @@ function App() {
                 setData(data);
                 setV1(v2);
                 setV2(i);
-                // setV3(i);
+                setV3(null);
               }
               data[i] = 1;
               setData(data);
