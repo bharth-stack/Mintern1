@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Fragment, useState } from "react";
+import styles from "./App.module.css";
 function App() {
+  const [data, setData] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
+  let [count, setCount] = useState(0);
+  const [v1, setV1] = useState(null);
+  const [v2, setV2] = useState(null);
+  const [v3, setV3] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <div className={styles.app}>
+        {data.map((e, i) => (
+          <div
+            className={e === 0 ? styles.app_box : styles.app_box2}
+            key={i}
+            onClick={() => {
+              if (v1 === null) {
+                setV1(i);
+              } else if (v2 === null) {
+                console.log("coming");
+                setV2(i);
+              }
+              if (v3 === null && v1 !== null && v2 !== null) {
+                data[v1] = 0;
+                setData(data);
+                setV1(v2);
+                setV2(i);
+              }
+              data[i] = 1;
+              setData(data);
+              setCount(count + 1);
+            }}
+          ></div>
+        ))}
+      </div>
+    </Fragment>
   );
 }
 
